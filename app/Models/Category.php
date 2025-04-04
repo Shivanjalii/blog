@@ -14,15 +14,11 @@ class Category extends Model
         'slug',       
     ];
 
-    protected $casts = [
-        'meta_data' => 'array', // Ensures meta_data is accessed as array
-    ];
-
     /**
      * The posts that belong to the category.
      */
     public function posts()
     {
-        return $this->hasMany(Post::class, 'category_post', 'category_id', 'post_id');
+        return $this->belongsToMany(Post::class, 'category_post', 'category_id', 'post_id');
     }
 }

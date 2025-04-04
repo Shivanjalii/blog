@@ -13,21 +13,15 @@ class Post extends Model
         'title',       
         'content',
         'slug',        
-        'meta_data',   
-        'category_id', 
         'user_id',     
     ];
 
-    protected $casts = [
-        'meta_data' => 'array', 
-    ];
-
     /**
-     * Each post belongs to one category.
+     * Each post belongs to many category.
      */
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class, 'category_post', 'category_id', 'post_id');
     }
 
     /**
