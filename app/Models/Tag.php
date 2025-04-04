@@ -10,7 +10,8 @@ class Tag extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 
+        'title',
+        'slug',
     ];
 
     /**
@@ -21,4 +22,3 @@ class Tag extends Model
         return $this->belongsToMany(Post::class, 'post_tag', 'tag_id', 'post_id');
     }
 }
-
