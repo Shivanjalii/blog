@@ -9,9 +9,16 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = [ 'title'];
+    protected $fillable = [
+        'title', 
+    ];
 
-    public function posts(){
-        return $this->belongsToMany(Post::class);
+    /**
+     * A tag can belong to many posts.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'post_tag', 'tag_id', 'post_id');
     }
 }
+
