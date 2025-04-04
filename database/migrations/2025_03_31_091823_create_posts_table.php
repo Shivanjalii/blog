@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique(); 
             $table->text('content');
-            $table->json('meta_data')->nullable();
-            $table->bigInteger('author_id');
-            $table->bigInteger('category_id');
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }
