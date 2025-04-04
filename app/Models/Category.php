@@ -10,12 +10,20 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'color',
-        'meta_data',
+        'title',     
+        'color',     
+        'meta_data', 
     ];
 
-    public function posts(){
-        return $this->belongsToMany(Post::class);
+    protected $casts = [
+        'meta_data' => 'array', // Ensures meta_data is accessed as array
+    ];
+
+    /**
+     * The posts that belong to the category.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'category_post', 'category_id', 'post_id');
     }
 }
